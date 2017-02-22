@@ -1,4 +1,4 @@
-.soulbutton {
+.soulbuttons {
     display: inline-block;
     padding: 10px 15px;
     border: 3px solid;
@@ -8,13 +8,20 @@
     font-weight: 600;
 }
 
-.soulbutton:hover {
+
+.soulbuttons:hover {
   opacity:1;
   -webkit-filter:brightness(110%);
   filter:brightness(110%);
 
 }
 
-.soulbutton-rounded {
+.soulbuttons-rounded {
   border-radius:10px;
+}
+
+
+/* disable TwentySeventeen persistent hover effects */
+.entry-content a.soulbuttons{
+  box-shadow: none;
 }
