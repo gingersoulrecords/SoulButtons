@@ -1,14 +1,18 @@
 .soulbutton {
-  display:inline-block;
-  padding:0.5em 1em;
-  border:5px solid #000;
-  text-decoration:none;
-  opacity: 0.8;
-  transition: opacity 0.3s;
+    display: inline-block;
+    padding: 10px 15px;
+    border: 3px solid;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: all 0.3s;
+    font-weight: 600;
 }
 
 .soulbutton:hover {
   opacity:1;
+  -webkit-filter:brightness(110%);
+  filter:brightness(110%);
+
 }
 
 .soulbutton-rounded {
