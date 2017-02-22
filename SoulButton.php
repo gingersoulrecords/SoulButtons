@@ -49,6 +49,7 @@ class SoulButton {
       'type'  => 'a', // could also be 'button', 'span'
       'href'  => '#',
       'style' => 'solid',
+      'class' => false,
       'css'   => '',
       'color' => self::$options['color'],
       'text'  => self::$options['color2'],
@@ -63,7 +64,7 @@ class SoulButton {
     $atts = apply_filters( "soulbutton_{$atts['style']}", $atts );
     $content = do_shortcode( $content );
     $style = "background-color:{$atts['color']}; color:{$atts['text']}; border-color:{$atts['border']};";
-    $class = "soulbutton soulbutton-{$atts['style']}";
+    $class = "soulbutton soulbutton-{$atts['style']}" . ( $atts['class'] ? ( ' ' . $atts['class'] ) : '' ) ;
     if ( 'false' !== $atts['track'] && $atts['track'] ) {
       $class .= ' soulbutton-track';
       $ga = $atts['track'];
