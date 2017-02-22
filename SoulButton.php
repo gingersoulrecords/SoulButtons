@@ -19,6 +19,7 @@ class SoulButton {
   public static $options = array(
 		'color' => '#000',
 		'color2'	=> '#fff',
+    'track'   => false,
 	);
 	public static $settings = false;
   public static $plugin_path = '';
@@ -27,6 +28,7 @@ class SoulButton {
 
     add_shortcode( 'soulbutton', array( 'SoulButton', 'shortcode' ) );
     add_action( 'wp_enqueue_scripts', array( 'SoulButton', 'styles' ) );
+    add_action( 'wp_enqueue_scripts', array( 'SoulButton', 'scripts' ) );
 
     add_filter( 'soulbutton_transparent', array( 'SoulButton', 'style_transparent' ) );
 
@@ -38,6 +40,10 @@ class SoulButton {
     wp_register_style( 'soulbutton', plugins_url( 'SoulButton.css', __FILE__ ) );
     wp_enqueue_style( 'soulbutton' );
   }
+  public static function scripts() {
+    wp_register_script( 'soulbutton', plugins_url( 'SoulButton.js', __FILE__ ), array( 'jquery' ) );
+    wp_enqueue_script( 'soulbutton' );
+  }
   public static function shortcode( $atts = array(), $content = '' ) {
     $defaults = array(
       'type'  => 'a', // could also be 'button', 'span'
@@ -47,6 +53,7 @@ class SoulButton {
       'color' => self::$options['color'],
       'text'  => self::$options['color2'],
       'border'=> self::$options['color'],
+      'track' => self::$options['track'],
     );
     $atts = wp_parse_args( $atts, $defaults );
     if ( isset( $atts['link'] ) ) {
@@ -57,8 +64,29 @@ class SoulButton {
     $content = do_shortcode( $content );
     $style = "background-color:{$atts['color']}; color:{$atts['text']}; border-color:{$atts['border']};";
     $class = "soulbutton soulbutton-{$atts['style']}";
-    $id = isset( $atts['id'] ) ? $atts['id'] : false;
-    $before = "<{$atts['type']} href=\"{$atts['href']}\" class=\"{$class}\" style=\"{$style}\" {$id}>";
+    if ( 'false' !== $atts['track'] && $atts['track'] ) {
+      $class .= ' soulbutton-track';
+      $ga = $atts['track'];
+      if ( '1' === $ga ) {
+        $ga = sanitize_title( $atts['href'] );
+      }
+      if ( "" === $ga ) {
+        $ga = sanitize_title( $content );
+      }
+      $arguments['data-ga'] = $ga;
+    }
+    $arguments['style'] = $style;
+    $arguments['class'] = $class;
+    $arguments['href']  = $atts['href'];
+    $arguments['id']    = isset( $atts['id'] ) ? $atts['id'] : false;
+    foreach( $arguments as $key => $value ) {
+      if ( is_array( $value ) ) {
+        $value = implode( ' ', $value );
+      }
+      $arguments[ $key ] = "{$key}=\"{$value}\"";
+    }
+    $arguments = implode( ' ', $arguments );
+    $before = "<{$atts['type']} {$arguments}>";
     $after = "</{$atts['type']}>";
     $content = "{$before}{$content}{$after}";
     return $content;
@@ -89,6 +117,22 @@ class SoulButton {
 					'fields'	=> array(
 						'color' => array(
 							'title'	=> __( 'Main Color', 'soulbutton' ),
+              // 'description'	=> __( 'Main color', 'soulbutton' ),
+						),
+						'color2' => array(
+							'title'	=> __( 'Simple Input', 'soulbutton' ),
+							'description'	=> __( 'With a description', 'soulbutton' ),
+						),
+					),
+				),
+        'advanced' => array(
+					'title'				=> __( 'Advanced', 'soulbutton' ),
+					'description'	=> __( 'Advanced sections', 'soulbutton' ),
+					'fields'	=> array(
+						'track' => array(
+							'title'	   => __( 'Tracking', 'soulbutton' ),
+              'callback' => 'checkbox',
+              'label'    => __( 'Enable button click event tracking via Google Analytics', 'soulbutton' ),
               // 'description'	=> __( 'Main color', 'soulbutton' ),
 						),
 						'color2' => array(
