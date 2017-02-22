@@ -18,7 +18,7 @@ class SoulButtons {
 		'color2'	          => '#fff',
     'track'             => false,
     'icon_dashicons'    => false,
-    'icon_fontawesome'  => false,
+    'icon_fontawesome'  => '0',
 	);
 	public static $settings = false;
   public static $plugin_path = '';
@@ -38,10 +38,23 @@ class SoulButtons {
 		add_action( 'plugins_loaded', array( 'SoulButtons', 'init_options' ), 9999 - 0040 );
   }
   public static function styles() {
+    $depends = array();
+    // load Dashicons if needed
     if ( self::$options['icon_dashicons'] ) {
       wp_enqueue_style( 'dashicons' );
+      $depends[] = 'dashicons';
     }
-    wp_register_style( 'soulbuttons', plugins_url( 'soulbuttons.css', __FILE__ ) );
+    // load local copy or CDN copy of FontAwesome, depending on user preferences
+    if ( 'local' === self::$options['icon_fontawesome'] ) {
+      wp_register_style( 'font-awesome', plugins_url( 'font-awesome/css/font-awesome.min.css', __FILE__ ) );
+      wp_enqueue_style( 'font-awesome' );
+      $depends[] = 'font-awesome';
+    } elseif ( 'cdn' === self::$options['icon_fontawesome'] ) {
+      wp_register_style( 'font-awesome-cdn', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+      wp_enqueue_style( 'font-awesome-cdn' );
+      $depends[] = 'font-awesome-cdn';
+    }
+    wp_register_style( 'soulbuttons', plugins_url( 'soulbuttons.css', __FILE__ ), $depends );
     wp_enqueue_style( 'soulbuttons' );
   }
   public static function scripts() {
@@ -73,6 +86,9 @@ class SoulButtons {
       $icon = false;
       if ( 0 === strpos( $atts['icon'], 'dashicons' ) ) {
         $icon = "<span class=\"dashicons {$atts['icon']} soulbuttons-icon-{$atts['icon-position']}\"></span>";
+      }
+      if ( 0 === strpos( $atts['icon'], 'fa' ) ) {
+        $icon = "<i class=\"fa {$atts['icon']} soulbuttons-icon-{$atts['icon-position']}\"></i>";
       }
       if ( $icon ) {
         if ( 'after' == $atts['icon-position'] ) {
