@@ -67,7 +67,7 @@ class SoulButton {
     if ( 'false' !== $atts['track'] && $atts['track'] ) {
       $class .= ' soulbutton-track';
       $ga = $atts['track'];
-      if ( '1' === $ga ) {
+      if ( '1' === $ga || 'true' === $ga ) {
         $ga = sanitize_title( $atts['href'] );
       }
       if ( "" === $ga ) {
