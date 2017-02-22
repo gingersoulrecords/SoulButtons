@@ -14,9 +14,11 @@ add_action( 'plugins_loaded', array( 'SoulButtons', 'init' ) );
 
 class SoulButtons {
   public static $options = array(
-		'color' => '#000',
-		'color2'	=> '#fff',
-    'track'   => false,
+		'color'             => '#000',
+		'color2'	          => '#fff',
+    'track'             => false,
+    'icon_dashicons'    => false,
+    'icon_fontawesome'  => false,
 	);
 	public static $settings = false;
   public static $plugin_path = '';
@@ -36,6 +38,9 @@ class SoulButtons {
 		add_action( 'plugins_loaded', array( 'SoulButtons', 'init_options' ), 9999 - 0040 );
   }
   public static function styles() {
+    if ( self::$options['icon_dashicons'] ) {
+      wp_enqueue_style( 'dashicons' );
+    }
     wp_register_style( 'soulbuttons', plugins_url( 'soulbuttons.css', __FILE__ ) );
     wp_enqueue_style( 'soulbuttons' );
   }
@@ -45,15 +50,17 @@ class SoulButtons {
   }
   public static function shortcode( $atts = array(), $content = '' ) {
     $defaults = array(
-      'type'  => 'a', // could also be 'button', 'span'
-      'href'  => '#',
-      'style' => 'solid',
-      'class' => false,
-      'css'   => '',
-      'color' => self::$options['color'],
-      'text'  => self::$options['color2'],
-      'border'=> self::$options['color'],
-      'track' => self::$options['track'],
+      'type'            => 'a', // TO DO: could also be 'button', 'span'
+      'href'            => '#',
+      'style'           => 'solid',
+      'class'           => false,
+      'css'             => '',
+      'color'           => self::$options['color'],
+      'text'            => self::$options['color2'],
+      'border'          => self::$options['color'],
+      'track'           => self::$options['track'],
+      'icon'            => false,
+      'icon-position'   => 'before',
     );
     $atts = wp_parse_args( $atts, $defaults );
     if ( isset( $atts['link'] ) ) {
@@ -62,6 +69,19 @@ class SoulButtons {
     }
     $atts = apply_filters( "soulbuttons_{$atts['style']}", $atts );
     $content = do_shortcode( $content );
+    if ( $atts[ 'icon' ] ) {
+      $icon = false;
+      if ( 0 === strpos( $atts['icon'], 'dashicons' ) ) {
+        $icon = "<span class=\"dashicons {$atts['icon']} soulbuttons-icon-{$atts['icon-position']}\"></span>";
+      }
+      if ( $icon ) {
+        if ( 'after' == $atts['icon-position'] ) {
+          $content .= $icon;
+        } else {
+          $content = $icon . $content;
+        }
+      }
+    }
     $style = "background-color:{$atts['color']}; color:{$atts['text']}; border-color:{$atts['border']};";
     $class = "soulbuttons soulbuttons-{$atts['style']}" . ( $atts['class'] ? ( ' ' . $atts['class'] ) : '' ) ;
     if ( 'false' !== $atts['track'] && $atts['track'] ) {
@@ -122,13 +142,38 @@ class SoulButtons {
 					'title'				=> __( 'Colors', 'soulbuttons' ),
 					'description'	=> __( 'Select default colors', 'soulbuttons' ),
 					'fields'	=> array(
-						'color' => array(
+            'color' => array(
 							'title'	=> __( 'Main Color', 'soulbuttons' ),
               // 'description'	=> __( 'Main color', 'soulbuttons' ),
 						),
 						'color2' => array(
 							'title'	=> __( 'Simple Input', 'soulbuttons' ),
 							'description'	=> __( 'With a description', 'soulbuttons' ),
+						),
+					),
+				),
+        'icons' => array(
+					'title'				=> __( 'Icons', 'soulbuttons' ),
+					'description'	=> __( 'Manage icon fonts', 'soulbuttons' ),
+					'fields'	=> array(
+            'icon_dashicons' => array(
+							'title'	   => __( 'Dashicons', 'soulbuttons' ),
+              'callback' => 'checkbox',
+              'label'    => __( 'Enable use of WordPress native Dashicons font on front-end', 'soulbuttons' ),
+              // 'description'	=> __( 'Main color', 'soulbuttons' ),
+						),
+						'icon_fontawesome' => array(
+							'title'	     => __( 'Font Awesome', 'soulbuttons' ),
+              'callback'    => 'listfield',
+              'list'        => array(
+                '0'       => __( 'Disable Font Awesome', 'soulbuttons' ),
+                'local'   => __( 'Use local copy of Font Awesome', 'soulbuttons' ),
+                'cdn'     => __( 'Use CDN version of Font Awesome', 'soulbuttons' ),
+              ),
+              'attributes'  => array(
+                'type'      => 'radio',
+              ),
+							'description'	=> __( 'Enable use of popular Font Awesome iconfont', 'soulbuttons' ),
 						),
 					),
 				),
@@ -140,11 +185,6 @@ class SoulButtons {
 							'title'	   => __( 'Tracking', 'soulbuttons' ),
               'callback' => 'checkbox',
               'label'    => __( 'Enable button click event tracking via Google Analytics', 'soulbuttons' ),
-              // 'description'	=> __( 'Main color', 'soulbuttons' ),
-						),
-						'color2' => array(
-							'title'	=> __( 'Simple Input', 'soulbuttons' ),
-							'description'	=> __( 'With a description', 'soulbuttons' ),
 						),
 					),
 				),

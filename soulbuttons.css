@@ -25,3 +25,24 @@
 .entry-content a.soulbuttons{
   box-shadow: none;
 }
+
+.soulbuttons .dashicons {
+  display: inline-block;
+  line-height: inherit;
+  font-style: inherit;
+  height: inherit;
+  font-weight: inherit;
+  vertical-align: middle;
+}
+
+.soulbuttons .dashicons::before {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.soulbuttons-icon-before {
+  margin-right: 1em;
+}
+.soulbuttons-icon-after {
+  margin-left: 1em;
+}
