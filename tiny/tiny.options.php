@@ -1,5 +1,5 @@
 <?php
-	// tinyOptions v0.4.0
+	// tinyOptions v0.5.0
 
 	if ( ! class_exists( 'tinyOptions' ) ) {
 		class tinyOptions {
@@ -15,7 +15,7 @@
 			}
 
 			public function script() {
-				wp_register_script( 'tiny-options', plugins_url( 'tiny.options.js', __FILE__ ) , array( 'jquery', 'media-upload', 'thickbox' ) );
+				wp_register_script( 'tiny-options', plugins_url( 'tiny.options.js', __FILE__ ) , array( 'jquery', 'media-upload', 'thickbox', 'wp-color-picker' ) );
 			}
 			public function init_page() {
 				$defaults = array(
@@ -164,6 +164,11 @@
 						'class'	=> 'regular-text',
 					)
 				);
+				if ( 'colorpicker' === $tag_args['type'] ) {
+					$tag_args['type'] = 'text';
+					$tag_args['class'] .= ' tinyoptions-colorpicker';
+					wp_enqueue_script( 'tiny-options' );
+				}
 				$tag_args = $this->_print_attributes( $tag_args );
 				echo "<input {$tag_args}/>";
 				echo $args['description'] ? "<p class=\"description\">{$args['description']}</p>": '';

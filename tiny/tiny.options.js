@@ -32,3 +32,7 @@ jQuery(function($){
     tiny_options_frame.open();
   });
 });
+jQuery(function($){
+  console.log($('.tinyoptions-colorpicker'));
+  $('.tinyoptions-colorpicker').wpColorPicker();
+})

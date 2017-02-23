@@ -33,9 +33,9 @@ class SoulButtons {
     add_filter( 'soulbuttons_border',       array( 'SoulButtons', 'style_border' ) );
     add_filter( 'soulbuttons_transparent',  array( 'SoulButtons', 'style_transparent' ) );
 
-    // tinyOptions v 0.4.0
+    // tinyOptions v 0.5.0
 		self::$options = wp_parse_args( get_option( 'soulbuttons_options' ), self::$options );
-		add_action( 'plugins_loaded', array( 'SoulButtons', 'init_options' ), 9999 - 0040 );
+		add_action( 'plugins_loaded', array( 'SoulButtons', 'init_options' ), 9999 - 0050 );
   }
   public static function styles() {
     $depends = array();
@@ -161,10 +161,16 @@ class SoulButtons {
             'color' => array(
 							'title'	=> __( 'Main Color', 'soulbuttons' ),
               // 'description'	=> __( 'Main color', 'soulbuttons' ),
+              'attributes' => array(
+                'type'  => 'colorpicker',
+              ),
 						),
 						'color2' => array(
-							'title'	=> __( 'Simple Input', 'soulbuttons' ),
-							'description'	=> __( 'With a description', 'soulbuttons' ),
+							'title'	=> __( 'Secondary Color', 'soulbuttons' ),
+							// 'description'	=> __( 'With a description', 'soulbuttons' ),
+              'attributes' => array(
+                'type'  => 'colorpicker',
+              ),
 						),
 					),
 				),
