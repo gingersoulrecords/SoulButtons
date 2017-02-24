@@ -68,6 +68,10 @@ Here is the list of available attributes:
 * `icon` - allows to insert a Dashicons / Font Awesome icon to be inserted into the button. Define using full name of the icon, i.e. `dahsicons-arrow-left` or `fa-shopping-cart`.
 * `icon-position` - set the icon position within the button. `before` (default) - icon is inserted before button content. `after` - icon is inserted after button content.
 * `hover` - defines additional hover effects. Space-separated list. Available effects include `icon-left`, `icon-right`, `icon-top`, `icon-bottom`.
+* `align` - changes text alignment in the button. Available options - `center` (default), `left`, `right`.
+* `padding` - changes button padding.
+* `border-width` - changes button border-width.
+* `width` - changes button minimal width.
 
 == Screenshots ==
 

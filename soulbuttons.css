@@ -6,6 +6,7 @@
     opacity: 0.9;
     transition: all 0.3s;
     font-weight: 600;
+    text-align: center;
 }
 
 
@@ -83,4 +84,13 @@
 }
 .soulbuttons-hover-icon-bottom:hover .soulbuttons-icon {
   bottom:0.5em;
+}
+
+/* text alignment */
+
+.soulbuttons-align-left {
+  text-align: left;
+}
+.soulbuttons-align-right {
+  text-align: right;
 }

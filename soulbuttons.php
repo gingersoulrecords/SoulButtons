@@ -16,6 +16,9 @@ class SoulButtons {
   public static $options = array(
 		'color'             => '#000',
 		'color2'	          => '#fff',
+    'padding'           => '10px 15px',
+    'border'            => '3px',
+    'min-width'         => 'auto',
     'track'             => false,
     'icon_dashicons'    => false,
     'icon_fontawesome'  => '0',
@@ -55,11 +58,18 @@ class SoulButtons {
       $depends[] = 'font-awesome-cdn';
     }
     wp_register_style( 'soulbuttons', plugins_url( 'soulbuttons.css', __FILE__ ), $depends );
+    $style = self::_generate_style();
+    wp_add_inline_style( 'soulbuttons', $style );
     wp_enqueue_style( 'soulbuttons' );
   }
   public static function scripts() {
     wp_register_script( 'soulbuttons', plugins_url( 'soulbuttons.js', __FILE__ ), array( 'jquery' ) );
     wp_enqueue_script( 'soulbuttons' );
+  }
+  private static function _generate_style() {
+    $style = ".soulbuttons{padding:".self::$options['padding'].";border-width:".self::$options['border'].";min-width:".self::$options['min-width'].";}";
+    $style = apply_filters( 'soulbuttons-styles', $style );
+    return $style;
   }
   public static function shortcode( $atts = array(), $content = '' ) {
     $defaults = array(
@@ -75,6 +85,10 @@ class SoulButtons {
       'icon'            => false,
       'icon-position'   => 'before',
       'hover'           => false,
+      'align'           => false,
+      'padding'         => false,
+      'border-width'    => false,
+      'width'           => false,
     );
     $atts = wp_parse_args( $atts, $defaults );
     if ( isset( $atts['link'] ) ) {
@@ -103,6 +117,15 @@ class SoulButtons {
       }
     }
     $style = "background-color:{$atts['color']}; color:{$atts['text']}; border-color:{$atts['border']};";
+    if ( $atts['padding'] ) {
+      $style .= "padding:{$atts['padding']};";
+    }
+    if ( $atts['border-width'] ) {
+      $style .= "border-width:{$atts['border-width']};";
+    }
+    if ( $atts['width'] ) {
+      $style .= "min-width:{$atts['width']};";
+    }
     $class = "soulbuttons soulbuttons-{$atts['style']}" . ( $atts['class'] ? ( ' ' . $atts['class'] ) : '' ) ;
     $class = explode( ' ', $class );
     $hover = array();
@@ -111,6 +134,9 @@ class SoulButtons {
       foreach( $hover as $key => $value ) {
         $hover[$key] = "soulbuttons-hover-{$value}";
       }
+    }
+    if ( $atts['align'] ) {
+      $class['align'] = "soulbuttons-align-{$atts['align']}";
     }
     $class = array_merge( $class, $hover );
     if ( 'false' !== $atts['track'] && $atts['track'] ) {
@@ -185,6 +211,24 @@ class SoulButtons {
               'attributes' => array(
                 'type'  => 'colorpicker',
               ),
+						),
+					),
+				),
+        'appearance' => array(
+					'title'				=> __( 'Appearance', 'soulbuttons' ),
+					'description'	=> __( 'Select default appearance settings', 'soulbuttons' ),
+					'fields'	=> array(
+            'padding' => array(
+							'title'	=> __( 'Button padding', 'soulbuttons' ),
+              'description'	=> __( 'i.e. <code>10px 10px</code>', 'soulbuttons' ),
+						),
+						'border' => array(
+							'title'	=> __( 'Border size', 'soulbuttons' ),
+              'description'	=> __( 'i.e. <code>3px</code>', 'soulbuttons' ),
+						),
+            'min-width' => array(
+							'title'	=> __( 'Minimal width', 'soulbuttons' ),
+              'description'	=> __( 'i.e. <code>100px</code>', 'soulbuttons' ),
 						),
 					),
 				),
