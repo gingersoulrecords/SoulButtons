@@ -26,6 +26,8 @@
   box-shadow: none;
 }
 
+
+/* dashicons compatibility */
 .soulbuttons .dashicons {
   display: inline-block;
   line-height: inherit;
@@ -40,9 +42,45 @@
   vertical-align: bottom;
 }
 
+/* icon styles */
 .soulbuttons-icon-before {
   margin-right: 1em;
 }
 .soulbuttons-icon-after {
   margin-left: 1em;
+}
+
+/* hover animations */
+
+.soulbuttons .soulbuttons-icon {
+  position:relative;
+  transition: all 0.3s;
+}
+
+.soulbuttons-hover-icon-left .soulbuttons-icon {
+  left:0;
+}
+.soulbuttons-hover-icon-left:hover .soulbuttons-icon {
+  left:0.5em;
+}
+
+.soulbuttons-hover-icon-right .soulbuttons-icon {
+  right:0;
+}
+.soulbuttons-hover-icon-right:hover .soulbuttons-icon {
+  right:0.5em;
+}
+
+.soulbuttons-hover-icon-top .soulbuttons-icon {
+  top:0;
+}
+.soulbuttons-hover-icon-top:hover .soulbuttons-icon {
+  top:0.5em;
+}
+
+.soulbuttons-hover-icon-bottom .soulbuttons-icon {
+  bottom:0;
+}
+.soulbuttons-hover-icon-bottom:hover .soulbuttons-icon {
+  bottom:0.5em;
 }

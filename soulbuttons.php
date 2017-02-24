@@ -74,21 +74,25 @@ class SoulButtons {
       'track'           => self::$options['track'],
       'icon'            => false,
       'icon-position'   => 'before',
+      'hover'           => false,
     );
     $atts = wp_parse_args( $atts, $defaults );
     if ( isset( $atts['link'] ) ) {
       $atts['href'] = $atts['link'];
       unset( $atts['link'] );
     }
+    // generic filter for all SoulButtons shortcodes
+    $atts = apply_filters( "soulbuttons", $atts );
+    // specific filter for different SoulButtons styles
     $atts = apply_filters( "soulbuttons_{$atts['style']}", $atts );
     $content = do_shortcode( $content );
     if ( $atts[ 'icon' ] ) {
       $icon = false;
       if ( 0 === strpos( $atts['icon'], 'dashicons' ) ) {
-        $icon = "<span class=\"dashicons {$atts['icon']} soulbuttons-icon-{$atts['icon-position']}\"></span>";
+        $icon = "<span class=\"dashicons {$atts['icon']} soulbuttons-icon soulbuttons-icon-{$atts['icon-position']}\"></span>";
       }
       if ( 0 === strpos( $atts['icon'], 'fa' ) ) {
-        $icon = "<i class=\"fa {$atts['icon']} soulbuttons-icon-{$atts['icon-position']}\"></i>";
+        $icon = "<i class=\"fa {$atts['icon']} soulbuttons-icon soulbuttons-icon-{$atts['icon-position']}\"></i>";
       }
       if ( $icon ) {
         if ( 'after' == $atts['icon-position'] ) {
@@ -100,8 +104,17 @@ class SoulButtons {
     }
     $style = "background-color:{$atts['color']}; color:{$atts['text']}; border-color:{$atts['border']};";
     $class = "soulbuttons soulbuttons-{$atts['style']}" . ( $atts['class'] ? ( ' ' . $atts['class'] ) : '' ) ;
+    $class = explode( ' ', $class );
+    $hover = array();
+    if ( $atts['hover'] ) {
+      $hover = explode( ' ', $atts['hover'] );
+      foreach( $hover as $key => $value ) {
+        $hover[$key] = "soulbuttons-hover-{$value}";
+      }
+    }
+    $class = array_merge( $class, $hover );
     if ( 'false' !== $atts['track'] && $atts['track'] ) {
-      $class .= ' soulbuttons-track';
+      $class[] = 'soulbuttons-track';
       $ga = $atts['track'];
       if ( '1' === $ga || 'true' === $ga ) {
         $ga = sanitize_title( $atts['href'] );
@@ -111,6 +124,7 @@ class SoulButtons {
       }
       $arguments['data-ga'] = $ga;
     }
+    $class = implode( ' ', $class );
     $arguments['style'] = $style;
     $arguments['class'] = $class;
     $arguments['href']  = $atts['href'];

@@ -64,7 +64,10 @@ Here is the list of available attributes:
 * `color` - the color of the button (to override global setting).
 * `text` - the color of the text in the button (to override global setting).
 * `border` - the color of the border of the button (to override global setting).
-* 'track' - should button click be recorded on Google Analytics. `true`/`false` to override global setting, custom string to set custom button name,
+* `track` - should button click be recorded on Google Analytics. `true`/`false` to override global setting, custom string to set custom button name.
+* `icon` - allows to insert a Dashicons / Font Awesome icon to be inserted into the button. Define using full name of the icon, i.e. `dahsicons-arrow-left` or `fa-shopping-cart`.
+* `icon-position` - set the icon position within the button. `before` (default) - icon is inserted before button content. `after` - icon is inserted after button content.
+* `hover` - defines additional hover effects. Space-separated list. Available effects include `icon-left`, `icon-right`, `icon-top`, `icon-bottom`.
 
 == Screenshots ==
 
