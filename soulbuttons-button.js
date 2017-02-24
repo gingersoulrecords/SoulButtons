@@ -65,7 +65,7 @@
                             }
                             atts += ' ' + key  + '="' + result[key] + '"';
                         }
-                        editor.insertContent( '[soulbuttons' + atts + ']' + content + '[/soulbuttons] ' );
+                        editor.insertContent( '[soulbutton' + atts + ']' + content + '[/soulbutton] ' );
                     }
                 } );
             }

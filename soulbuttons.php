@@ -29,6 +29,7 @@ class SoulButtons {
     self::$plugin_path = plugin_dir_path( __FILE__ );
 
     add_shortcode( 'soulbutton',      array( 'SoulButtons', 'shortcode' ) );
+    add_shortcode( 'soulbuttons',     array( 'SoulButtons', 'shortcode' ) );
 
     add_action( 'wp_enqueue_scripts',     array( 'SoulButtons', 'styles' ) );
     add_action( 'wp_enqueue_scripts',     array( 'SoulButtons', 'scripts' ) );

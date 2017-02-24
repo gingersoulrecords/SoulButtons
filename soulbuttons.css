@@ -22,16 +22,21 @@
 }
 
 
-/* disable TwentySeventeen persistent hover effects */
+/* disable Twenty Sixteen persistent hover effects */
 .entry-content a.soulbuttons{
   box-shadow: none;
 }
+/* disable Twenty Seventeen persistent hover effects */
+.entry-content a.soulbuttons:hover{
+  box-shadow: none;
+}
+
 
 
 /* dashicons compatibility */
 .soulbuttons .dashicons {
   display: inline-block;
-  line-height: inherit;
+  /*line-height: inherit;*/
   font-style: inherit;
   height: inherit;
   font-weight: inherit;

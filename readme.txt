@@ -1,5 +1,5 @@
 === SoulButtons ===
-Contributors: gsr,ideag
+Contributors: gingersoulrecords,ideag
 Donate link: http://gingersoulrecords.com/
 Tags: button, call to action, button shortcode, shortcode
 Requires at least: 4.6
@@ -46,6 +46,10 @@ you put the stable version, in order to eliminate any doubt.
 
 == Frequently Asked Questions ==
 
+= How do I create a button? =
+
+Use `[soulbutton]` shortcode or a button in WP Editor to generate it.
+
 = How do I use the shortcode? =
 
 The same way you use other WordPress shortcodes. Just wrap your button text with `[soulbutton]` and `[/soulbutton]` tags. You can use several different attributes to customize appearance and functionality of the button. See them in the next question.
@@ -55,6 +59,7 @@ Sample usage: `[soulbutton link="http://google.com"]Go to Google[/soulbutton]`
 = What attributes does `[soulbutton]` shortcode have? =
 
 Here is the list of available attributes:
+
 * `style` - allows to choose button appearance. Available styles currently include `solid` (default), `rounded`, `border` and `transparent`.
 * `link` - where button link should point to. Defaults to `#`.
 * `href` - an alias of `link`.
@@ -74,6 +79,10 @@ Here is the list of available attributes:
 * `width` - changes button minimal width.
 
 == Screenshots ==
+
+1. SoulButtons in action on Twenty Seventeen theme
+2. Shortcode builder
+3. Settings page
 
 == Changelog ==
 
