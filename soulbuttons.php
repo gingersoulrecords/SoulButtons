@@ -30,16 +30,30 @@ class SoulButtons {
 
     add_shortcode( 'soulbutton',      array( 'SoulButtons', 'shortcode' ) );
 
-    add_action( 'wp_enqueue_scripts', array( 'SoulButtons', 'styles' ) );
-    add_action( 'wp_enqueue_scripts', array( 'SoulButtons', 'scripts' ) );
+    add_action( 'wp_enqueue_scripts',     array( 'SoulButtons', 'styles' ) );
+    add_action( 'wp_enqueue_scripts',     array( 'SoulButtons', 'scripts' ) );
+    add_action( 'admin_enqueue_scripts',  array( 'SoulButtons', 'admin_scripts' ) );
 
     add_filter( 'soulbuttons_border',       array( 'SoulButtons', 'style_border' ) );
     add_filter( 'soulbuttons_transparent',  array( 'SoulButtons', 'style_transparent' ) );
+
+    add_filter( "mce_external_plugins", array( 'SoulButtons', 'editor_button_js' ) );
+    add_filter( 'mce_buttons', 			    array( 'SoulButtons', 'editor_button' ) );
+
 
     // tinyOptions v 0.5.0
 		self::$options = wp_parse_args( get_option( 'soulbuttons_options' ), self::$options );
 		add_action( 'plugins_loaded', array( 'SoulButtons', 'init_options' ), 9999 - 0050 );
   }
+  public static function editor_button( $buttons ) {
+    array_push( $buttons, 'soulbuttons_shortcode' );
+    return $buttons;
+  }
+  public static function editor_button_js( $plugin_array ) {
+  	$plugin_array['soulbuttons'] = plugins_url( 'soulbuttons-button.js', __FILE__ );
+    return $plugin_array;
+	}
+
   public static function styles() {
     $depends = array();
     // load Dashicons if needed
@@ -65,6 +79,74 @@ class SoulButtons {
   public static function scripts() {
     wp_register_script( 'soulbuttons', plugins_url( 'soulbuttons.js', __FILE__ ), array( 'jquery' ) );
     wp_enqueue_script( 'soulbuttons' );
+  }
+  public static function admin_scripts() {
+    wp_register_script( 'soulbuttons-admin', plugins_url( 'soulbuttons-admin.js', __FILE__ ), array( 'jquery' ) );
+    $data = array(
+      // 'loading_image' => self::get_loading_image(),
+      'icon' => plugins_url( 'soulbuttons-button.png', __FILE__ ),
+      'texts' => array(
+        'main_label' 		=> __( 'Main', 'soulbuttons' ),
+        'advanced_label'	=> __( 'Advanced', 'soulbuttons' ),
+        'link_label' 		  => __( 'Link', 'soulbuttons' ),
+        'style_label' 		=> __( 'Style', 'soulbuttons' ),
+        'text_label' 		  => __( 'Text', 'soulbuttons' ),
+        'align_label' 		=> __( 'Text Alignment', 'soulbuttons' ),
+        'icon_label'      => __( 'Icon', 'soulbuttons' ),
+        'icon_tooltip'    => __( 'i.e. "fa-shopping-cart" or "dashicons-arrow-left"', 'soulbuttons' ),
+        'iconpos_label'   => __( 'Icon Position', 'soulbuttons' ),
+        'style_options'   => array(
+          array(
+            'text'  => __( 'Solid (default)', 'soulbuttons' ),
+            'value' => '',
+          ),
+          array(
+            'text'  => __( 'Border', 'soulbuttons' ),
+            'value' => 'border',
+          ),
+          array(
+            'text'  => __( 'Rounded Corners', 'soulbuttons' ),
+            'value' => 'rounded',
+          ),
+          array(
+            'text'  => __( 'Transparent', 'soulbuttons' ),
+            'value' => 'transparent',
+          ),
+        ),
+        'align_options'   => array(
+          array(
+            'text'  => __( 'Center (default)', 'soulbuttons' ),
+            'value' => '',
+          ),
+          array(
+            'text'  => __( 'Left', 'soulbuttons' ),
+            'value' => 'left',
+          ),
+          array(
+            'text'  => __( 'Right', 'soulbuttons' ),
+            'value' => 'right',
+          ),
+        ),
+        'iconpos_options'   => array(
+          array(
+            'text'  => __( 'Before text (default)', 'soulbuttons' ),
+            'value' => '',
+          ),
+          array(
+            'text'  => __( 'After text', 'soulbuttons' ),
+            'value' => 'after',
+          ),
+        ),
+        'class_label' 		=> __( 'CSS classes', 'soulbuttons' ),
+        'wordlimit_label'	=> __( 'Word Limit', 'soulbuttons' ),
+        'link_dialog_title' => __( 'Edit Content Card', 'soulbuttons' ),
+        'add_dialog_title'  => __( 'Add Content Card', 'soulbuttons' ),
+      'loading_image_heading' => __( 'This Content Card is still processing', 'soulbuttons' ),
+      'loading_image_text' => __( 'If this message persists, make sure the link you are trying to embed is reachable. While your content card hasn\'t been processed, visitors will see a normal link.' , 'soulbuttons' ),
+      )
+    );
+    wp_localize_script( 'soulbuttons-admin', 'soulbuttons', $data );
+    wp_enqueue_script( 'soulbuttons-admin' );
   }
   private static function _generate_style() {
     $style = ".soulbuttons{padding:".self::$options['padding'].";border-width:".self::$options['border'].";min-width:".self::$options['min-width'].";}";
