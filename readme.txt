@@ -8,34 +8,17 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Short description here
+Shortcodes for simple, minimal buttons. Includes options for hover animations, icons, analytics tracking, and click events.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+SoulButtons was designed to give WordPress developers a simple, consistent, effective approach to using buttons (and other actionable links) in their layouts.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+SoulButtons was conceived by a designer who found it difficult to maintain the balance between priority (e.g. how to make more important buttons/links stand out from others), consistency (limiting button styles and their behaviors so that site visitors understand how to find the right information/conversion paths), and ease of use (so non-CSSers and non-UXers could join the party) with respect to custom-coding button styles and behaviors.
 
-A few notes about the sections above:
+SoulButtons also makes important (yet complex) button functions available just by assigning a shortcode attribute. Got Google Analytics installed? Add the track attribute and you'll see what buttons your users are clicking on more than others in your Analytics 'events' area. Need to show an element inside a dialog/modal window when a button is clicked? Assign target and targetEvent attributes to a SoulButton and you're all set.
 
-*   "Contributors" is a comma separated list of wordpress.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+For videos and examples, visit https://gingersoulrecords.com/soulbuttons.
 
 == Installation ==
 
