@@ -200,13 +200,13 @@ class SoulButtons {
       }
     }
     $style = "background-color:{$atts['color']}; color:{$atts['text']}; border-color:{$atts['border']};";
-    if ( $atts['padding'] ) {
+    if ( false !== $atts['padding'] ) {
       $style .= "padding:{$atts['padding']};";
     }
-    if ( $atts['border-width'] ) {
+    if ( false !== $atts['border-width'] ) {
       $style .= "border-width:{$atts['border-width']};";
     }
-    if ( $atts['width'] ) {
+    if ( false !== $atts['width'] ) {
       $style .= "min-width:{$atts['width']};";
     }
     $class = "soulbuttons soulbuttons-{$atts['style']}" . ( $atts['class'] ? ( ' ' . $atts['class'] ) : '' ) ;
