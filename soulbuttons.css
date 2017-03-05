@@ -52,9 +52,11 @@
 .soulbuttons-icon-before {
   margin-right: 1em;
 }
+/*
 .soulbuttons-icon-after {
   margin-left: 1em;
 }
+*/
 
 /* hover animations */
 
@@ -90,6 +92,13 @@
 .soulbuttons-hover-icon-bottom:hover .soulbuttons-icon {
   bottom:0.5em;
 }
+
+.soulbuttons-hover-underline:hover {
+  text-decoration: underline;
+}
+
+
+
 
 /* text alignment */
 
