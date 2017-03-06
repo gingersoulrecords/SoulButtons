@@ -172,6 +172,8 @@ class SoulButtons {
       'padding'         => false,
       'border-width'    => false,
       'width'           => false,
+      'target'          => false,
+      'target-effect'   => 'fadeInFromCenter',
     );
     $atts = wp_parse_args( $atts, $defaults );
     if ( isset( $atts['link'] ) ) {
@@ -237,6 +239,10 @@ class SoulButtons {
     $arguments['style'] = $style;
     $arguments['class'] = $class;
     $arguments['href']  = $atts['href'];
+    if ( $atts['target'] ) {
+      $arguments['data-target'] = $atts['target'];
+      $arguments['data-effect'] = $atts['target-effect'];
+    }
     $arguments['id']    = isset( $atts['id'] ) ? $atts['id'] : false;
     foreach( $arguments as $key => $value ) {
       if ( is_array( $value ) ) {
