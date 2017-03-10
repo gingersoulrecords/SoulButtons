@@ -41,6 +41,7 @@
   height: inherit;
   font-weight: inherit;
   vertical-align: middle;
+  font-size: inherit;
 }
 
 .soulbuttons .dashicons::before {
