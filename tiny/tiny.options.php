@@ -15,6 +15,7 @@
 			}
 
 			public function script() {
+				wp_enqueue_style( 'wp-color-picker' );
 				wp_register_script( 'tiny-options', plugins_url( 'tiny.options.js', __FILE__ ) , array( 'jquery', 'media-upload', 'thickbox', 'wp-color-picker' ) );
 			}
 			public function init_page() {
