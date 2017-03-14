@@ -3,7 +3,7 @@
 Plugin Name: SoulButtons
 Plugin URI: http://gingersoulrecords.com
 Description: Shortcodes for simple, minimal buttons. Includes options for hover animations, icons, analytics tracking, and click events.
-Version: 0.1.0
+Version: 0.1.1
 Author: Dave Bloom
 Author URI: http://gingersoulrecords.com
 Text Domain: soulbuttons

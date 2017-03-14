@@ -4,7 +4,7 @@ Donate link: http://gingersoulrecords.com/
 Tags: button, call to action, button shortcode, shortcode
 Requires at least: 4.6
 Tested up to: 4.7
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,6 +68,12 @@ Here is the list of available attributes:
 3. Settings page
 
 == Changelog ==
+
+= 0.1.1 = 
+* updated plugin description
+* fixed colorpicker bug in settings
+* added `font-size:inherit` for Dashicons
+* added target/target-effect attributes to the shortcode
 
 = 0.1.0 =
 * first version to be submitted to wordpress.org
