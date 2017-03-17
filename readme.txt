@@ -20,6 +20,8 @@ SoulButtons also makes important (yet complex) button functions available just b
 
 For videos and examples, visit https://gingersoulrecords.com/soulbuttons.
 
+Test again
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/soulbuttons` directory, or install the plugin through the WordPress plugins screen directly.
