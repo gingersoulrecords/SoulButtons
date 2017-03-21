@@ -1,6 +1,6 @@
 // initalize tracking of buttons
 jQuery(function($){
-	$('.soulbuttons.soulbuttons-track').on( 'click', function(e) {
+	$('.soulbuttons.soulbuttons-track').click( function(e) {
 		// detect if ga is present
     if ( typeof( ga ) == 'undefined' && typeof( __gaTracker ) == 'undefined' ) {
       return true;
@@ -17,9 +17,24 @@ jQuery(function($){
 	});
 });
 
+// initalize scrollTo
+jQuery(function($){
+	jQuery('.soulbuttons.soulbuttons-scrollto').click(function(e){
+		var el = jQuery(this);
+		console.log( el.attr( 'href' ) );
+		if ( /^#/.test( el.attr( 'href' ) ) === true ) {
+			e.preventDefault();
+			TweenMax.to( window, el.data('scrollto'), { scrollTo: el.attr( 'href' ) } );
+		}
+	})
+});
+
 // initalize target effects for buttons
 jQuery(function(){
 	if( jQuery('html').hasClass( 'fl-builder-edit' ) ) {
+		return false;
+	}
+	if( 'undefined' === typeof( TweenMax ) ) {
 		return false;
 	}
 

@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: SoulButtons
-Plugin URI: http://gingersoulrecords.com
+Plugin URI: https://gingersoulrecords.com
 Description: Shortcodes for simple, minimal buttons. Includes options for hover animations, icons, analytics tracking, and click events.
-Version: 0.1.1
+Version: 0.1.2
 Author: Dave Bloom
-Author URI: http://gingersoulrecords.com
+Author URI: https://gingersoulrecords.com
 Text Domain: soulbuttons
 */
 
@@ -78,7 +78,9 @@ class SoulButtons {
     wp_enqueue_style( 'soulbuttons' );
   }
   public static function scripts() {
-    wp_register_script( 'soulbuttons', plugins_url( 'soulbuttons.js', __FILE__ ), array( 'jquery' ) );
+    wp_register_script( 'gsap',             plugins_url( 'TweenMax.min.js', __FILE__ ), array( 'jquery' ) );
+    wp_register_script( 'gsap-scrollto',    plugins_url( 'ScrollToPlugin.min.js', __FILE__ ), array( 'jquery', 'gsap' ) );
+    wp_register_script( 'soulbuttons',      plugins_url( 'soulbuttons.js', __FILE__ ), array( 'jquery', 'gsap', 'gsap-scrollto' ) );
     wp_enqueue_script( 'soulbuttons' );
   }
   public static function admin_scripts() {
@@ -174,6 +176,7 @@ class SoulButtons {
       'width'           => false,
       'target'          => false,
       'target-effect'   => 'fadeInFromCenter',
+      'scrollto'        => false,
     );
     $atts = wp_parse_args( $atts, $defaults );
     if ( isset( $atts['link'] ) ) {
@@ -222,6 +225,13 @@ class SoulButtons {
     }
     if ( $atts['align'] ) {
       $class['align'] = "soulbuttons-align-{$atts['align']}";
+    }
+    if ( $atts['scrollto'] ) {
+      if ( in_array( $atts['scrollto'], array( true, 'true' ), true ) ) {
+        $atts['scrollto'] = 0.5;
+      }
+      $class['scrollto'] = "soulbuttons-scrollto";
+      $arguments['data-scrollto'] = $atts['scrollto'];
     }
     $class = array_merge( $class, $hover );
     if ( 'false' !== $atts['track'] && $atts['track'] ) {
