@@ -3,7 +3,7 @@
 Plugin Name: SoulButtons
 Plugin URI: https://gingersoulrecords.com
 Description: Shortcodes for simple, minimal buttons. Includes options for hover animations, icons, analytics tracking, and click events.
-Version: 0.1.2
+Version: 0.1.3
 Author: Dave Bloom
 Author URI: https://gingersoulrecords.com
 Text Domain: soulbuttons
@@ -177,6 +177,7 @@ class SoulButtons {
       'target'          => false,
       'target-effect'   => 'fadeInFromCenter',
       'scrollto'        => false,
+      'scrollto-offset' => 0,
     );
     $atts = wp_parse_args( $atts, $defaults );
     if ( isset( $atts['link'] ) ) {
@@ -232,6 +233,7 @@ class SoulButtons {
       }
       $class['scrollto'] = "soulbuttons-scrollto";
       $arguments['data-scrollto'] = $atts['scrollto'];
+      $arguments['data-scrollto-offset'] = $atts['scrollto-offset'];
     }
     $class = array_merge( $class, $hover );
     if ( 'false' !== $atts['track'] && $atts['track'] ) {

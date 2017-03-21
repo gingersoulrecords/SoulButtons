@@ -4,7 +4,7 @@ Donate link: http://gingersoulrecords.com/
 Tags: button, call to action, button shortcode, shortcode
 Requires at least: 4.6
 Tested up to: 4.7
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,7 +60,8 @@ Here is the list of available attributes:
 * `padding` - changes button padding.
 * `border-width` - changes button border-width.
 * `width` - changes button minimal width.
-* `scrollto` - adds a visual "Scroll To" effect for anchor links. Availtable options - true (0.5) or a set animation duration (in seconds).
+* `scrollto` - adds a visual "Scroll To" effect for anchor links. Available options - true (0.5) or a set animation duration (in seconds).
+* `scrollto-offset` - add a vertical offset for scrollto.
 
 == Screenshots ==
 
@@ -69,6 +70,9 @@ Here is the list of available attributes:
 3. Settings page
 
 == Changelog ==
+
+= 0.1.3 =
+* added a `scrollto-offset` attribute
 
 = 0.1.2 =
 * added a `scrollto` attribute
