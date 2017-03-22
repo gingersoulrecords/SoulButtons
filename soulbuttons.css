@@ -9,6 +9,10 @@
     text-align: center;
 }
 
+/* EDD 'Add to Cart' Text Styling */
+.soulbuttons.edd-dark-bg + .edd-cart-ajax-alert .edd-cart-added-alert{
+	color:#fff;
+}
 
 .soulbuttons:hover {
   opacity:1;
