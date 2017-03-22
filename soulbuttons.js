@@ -24,7 +24,7 @@ jQuery(function($){
 		console.log( el.attr( 'href' ) );
 		if ( /^#/.test( el.attr( 'href' ) ) === true ) {
 			e.preventDefault();
-			TweenMax.to( window, el.data('scrollto'), { scrollTo: { y:el.attr( 'href' ), offsetY:el.data('scrollto-offset') } );
+			TweenMax.to( window, el.data('scrollto'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
 		}
 	})
 });
