@@ -22,10 +22,14 @@ jQuery(function($){
 	jQuery('.soulbuttons.soulbuttons-scrollto').click(function(e){
 		var el = jQuery(this);
 		console.log( el.attr( 'href' ) );
-		if ( /^#/.test( el.attr( 'href' ) ) === true ) {
-			e.preventDefault();
-			TweenMax.to( window, el.data('scrollto'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
+		if ( true !== /^#/.test( el.attr( 'href' ) ) ) {
+			return true;
 		}
+		if ( 0 === jQuery( el.attr( 'href' ) ).size() ){
+			return true;
+		}
+		e.preventDefault();
+		TweenMax.to( window, el.data('scrollto-speed'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
 	})
 });
 

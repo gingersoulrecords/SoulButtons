@@ -231,6 +231,7 @@ class SoulButtons {
 			'target'          => false,
 			'target-effect'   => 'fadeInFromCenter',
 			'scrollto'        => false,
+			'scrollto-speed'	=> 0.5,
 			'scrollto-offset' => 0,
 		);
 		$atts = wp_parse_args( $atts, $defaults );
@@ -281,12 +282,12 @@ class SoulButtons {
 		if ( $atts['align'] ) {
 			$class['align'] = "soulbuttons-align-{$atts['align']}";
 		}
+		if ( in_array( $atts['scrollto'], array( false, 'false', '0', '' ), true ) ) {
+			$atts['scrollto'] = false;
+		}
 		if ( $atts['scrollto'] ) {
-			if ( in_array( $atts['scrollto'], array( true, 'true' ), true ) ) {
-				$atts['scrollto'] = 0.5;
-			}
 			$class['scrollto'] = 'soulbuttons-scrollto';
-			$arguments['data-scrollto'] = $atts['scrollto'];
+			$arguments['data-scrollto-speed'] = $atts['scrollto-speed'];
 			$arguments['data-scrollto-offset'] = $atts['scrollto-offset'];
 		}
 		$class = array_merge( $class, $hover );
