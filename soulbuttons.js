@@ -155,7 +155,7 @@ jQuery(function(){
 
 				//make clicks on the overlay close everything
 				jQuery('#soulbuttons-backdrop').click(function(){
-					soulnavtl.reverse();
+					soulbuttonstl.reverse();
 /*
 					TweenMax.allTo([jQuery(this),target],1,{
 						autoAlpha:0
