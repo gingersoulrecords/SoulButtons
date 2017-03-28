@@ -66,9 +66,9 @@ class SoulButtons {
 		add_filter( 'mce_external_plugins', array( 'SoulButtons', 'editor_button_js' ) );
 		add_filter( 'mce_buttons', 			    array( 'SoulButtons', 'editor_button' ) );
 
-		// tinyOptions v 0.5.0.
+		// tinyOptions v 0.6.0.
 		self::$options = wp_parse_args( get_option( 'soulbuttons_options' ), self::$options );
-		add_action( 'plugins_loaded', array( 'SoulButtons', 'init_options' ), 9999 - 0050 );
+		add_action( 'plugins_loaded', array( 'SoulButtons', 'init_options' ), 9999 - 0060 );
 	}
 	/**
 	 * Add SoulButtons button to WP Editor
@@ -356,6 +356,14 @@ class SoulButtons {
 	 */
 	public static function init_options() {
 		self::$settings = array(
+			'links' => array(
+				'file'	=> plugin_basename( __FILE__ ),
+				'links' => array(
+					array(
+						'title'	=> __( 'Settings', 'soulbuttons' ),
+					),
+				),
+			),
 			'page' => array(
 				'title' 			=> __( 'SoulButtons Settings', 'soulbuttons' ),
 				'menu_title'	=> __( 'SoulButtons', 'soulbuttons' ),

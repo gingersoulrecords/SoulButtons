@@ -1,5 +1,5 @@
 <?php
-	// tinyOptions v0.5.0
+	// tinyOptions v0.6.0
 
 	if ( ! class_exists( 'tinyOptions' ) ) {
 		class tinyOptions {
@@ -9,6 +9,9 @@
 			public function __construct( $settings, $parent ) {
 				$this->settings = $settings;
 				$this->parent = $parent;
+				if ( isset( $settings['links'] ) ) {
+					add_filter( "plugin_action_links_{$settings['links']['file']}", array( $this, 'list_link' ) );
+				}
 				add_action( 'admin_enqueue_scripts',	array( $this, 'script' ) );
 				add_action( 'admin_menu', 						array( $this, 'init_page' ) );
 				add_action( 'admin_menu', 						array( $this, 'init_fields' ) );
@@ -17,6 +20,26 @@
 			public function script() {
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_register_script( 'tiny-options', plugins_url( 'tiny.options.js', __FILE__ ) , array( 'jquery', 'media-upload', 'thickbox', 'wp-color-picker' ) );
+			}
+			public function list_link( $links ) {
+				foreach( $this->settings['links']['links'] as $link ) {
+					$link_defaults = array(
+						'uri'	=> $this->_get_menu_uri(),
+						'title' => '',
+						'class' => '',
+					);
+					$link = wp_parse_args( $link, $link_defaults );
+					$link = "<a href='{$link['uri']}' class='{$link['class']}'>{$link['title']}</a>";
+					$links[] = $link;
+				}
+				return $links;
+			}
+			private function _get_menu_uri() {
+				if( isset( $this->settings['page']['parent'] ) ) {
+				} else {
+					$uri = admin_url( "options-general.php?page={$this->settings['page']['slug']}" );
+				}
+				return $uri;
 			}
 			public function init_page() {
 				$defaults = array(
