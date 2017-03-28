@@ -59,12 +59,17 @@ class SoulButtons {
 		add_action( 'wp_enqueue_scripts',     array( 'SoulButtons', 'styles' ) );
 		add_action( 'wp_enqueue_scripts',     array( 'SoulButtons', 'scripts' ) );
 		add_action( 'admin_enqueue_scripts',  array( 'SoulButtons', 'admin_scripts' ) );
+		// TO DO: do a better Beaver Builder detection.
+		if ( isset( $_REQUEST['fl_builder'] ) && is_user_logged_in() ) {
+			add_action( 'wp_enqueue_scripts',  array( 'SoulButtons', 'admin_scripts' ) );
+		}
 
 		add_filter( 'soulbuttons_border',       array( 'SoulButtons', 'style_border' ) );
 		add_filter( 'soulbuttons_transparent',  array( 'SoulButtons', 'style_transparent' ) );
 
-		add_filter( 'mce_external_plugins', array( 'SoulButtons', 'editor_button_js' ) );
-		add_filter( 'mce_buttons', 			    array( 'SoulButtons', 'editor_button' ) );
+		// Abnormally large priority is a workaround Beaver Builder trying to disable third party buttons in WP Editor.
+		add_filter( 'mce_external_plugins', array( 'SoulButtons', 'editor_button_js' ), 999999999 );
+		add_filter( 'mce_buttons', 			    array( 'SoulButtons', 'editor_button' ), 999999999 );
 
 		// tinyOptions v 0.6.0.
 		self::$options = wp_parse_args( get_option( 'soulbuttons_options' ), self::$options );
