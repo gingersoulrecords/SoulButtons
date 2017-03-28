@@ -4,7 +4,7 @@ Donate link: http://gingersoulrecords.com/
 Tags: button, call to action, button shortcode, shortcode
 Requires at least: 4.6
 Tested up to: 4.7
-Stable tag: 0.1.4
+Stable tag: 0.1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,8 +35,8 @@ Use `[soulbutton]` shortcode or a button in WP Editor to generate it.
 
 = How do I use the shortcode? =
 
-The same way you use other WordPress shortcodes. Just wrap your button text with `[soulbutton]` and `[/soulbutton]` tags. You can use several different attributes to customize appearance and functionality of the button. See them in the next question.
 
+The same way you use other WordPress shortcodes. Just wrap your button text with `[soulbutton]` and `[/soulbutton]` tags. You can use several different attributes to customize appearance and functionality of the button. See them in the next question.
 Sample usage: `[soulbutton link="http://google.com"]Go to Google[/soulbutton]`
 
 = What attributes does `[soulbutton]` shortcode have? =
@@ -73,6 +73,12 @@ Here is the list of available attributes:
 3. Settings page
 
 == Changelog ==
+
+= 0.1.5 =
+* moved screenshots to assets
+* added `target`/`target-effect` attributes
+* added a Settings link in plugins list
+* added shortcode builder tag to Beaver Builder WP Editor fields
 
 = 0.1.4 =
 * added a `scrollto-speed` attribute
