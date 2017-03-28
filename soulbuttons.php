@@ -142,6 +142,9 @@ class SoulButtons {
 				'icon_label'      => __( 'Icon', 'soulbuttons' ),
 				'icon_tooltip'    => __( 'i.e. "fa-shopping-cart" or "dashicons-arrow-left"', 'soulbuttons' ),
 				'iconpos_label'   => __( 'Icon Position', 'soulbuttons' ),
+				'target_label'		=> __( 'Target', 'soulbuttons' ),
+				'target_tooltip'	=> __( 'i.e. #main-content', 'soulbuttons' ),
+				'targeteffect_label'		=> __( 'Target Effect', 'soulbuttons' ),
 				'style_options'   => array(
 					array(
 						'text'  => __( 'Solid (default)', 'soulbuttons' ),
@@ -182,6 +185,20 @@ class SoulButtons {
 					array(
 						'text'  => __( 'After text', 'soulbuttons' ),
 						'value' => 'after',
+					),
+				),
+				'targeteffect_options'   => array(
+					array(
+						'text'  => __( 'Fade-in from center', 'soulbuttons' ),
+						'value' => 'fadeInFromCenter',
+					),
+					array(
+						'text'  => __( 'Slide-over from right', 'soulbuttons' ),
+						'value' => 'slideOverFromRight',
+					),
+					array(
+						'text'  => __( 'Push-over from right', 'soulbuttons' ),
+						'value' => 'pushOverFromRight',
 					),
 				),
 				'class_label' 					=> __( 'CSS classes', 'soulbuttons' ),
@@ -229,7 +246,7 @@ class SoulButtons {
 			'border-width'    => false,
 			'width'           => false,
 			'target'          => false,
-			'target-effect'   => 'fadeInFromCenter',
+			'target-effect'   => 'slideOverFromRight',
 			'scrollto'        => false,
 			'scrollto-speed'	=> 0.5,
 			'scrollto-offset' => 0,

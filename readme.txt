@@ -63,6 +63,8 @@ Here is the list of available attributes:
 * `scrollto` - adds a visual "Scroll To" effect for anchor links (true/false).
 * `scrollto-speed` - set scrollto effect speed (default 0.5).
 * `scrollto-offset` - add a vertical offset for scrollto effect (default 0).
+* `target` - define an element (via CSS selector) to take out of DOM and animate as off-canvas item.
+* `target-effect` - define which effect should be used the off-canvas target. Available effect include `fadeInFromCenter`, `slideOverFromRight` (default), `pushOverFromRight`
 
 == Screenshots ==
 

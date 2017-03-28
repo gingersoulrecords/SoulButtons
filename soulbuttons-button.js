@@ -48,6 +48,16 @@
                             name: 'icon-position',
                             label: soulbuttons.texts.iconpos_label,
                             values: soulbuttons.texts.iconpos_options,
+                          },{
+                            type: 'textbox',
+                            name: 'target',
+                            label: soulbuttons.texts.target_label,
+                            tooltip: soulbuttons.texts.target_tooltip,
+                          },{
+                            type: 'listbox',
+                            name: 'target-effect',
+                            label: soulbuttons.texts.targeteffect_label,
+                            values: soulbuttons.texts.targeteffect_options,
                         }
                         ],
                     }],

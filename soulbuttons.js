@@ -98,7 +98,6 @@ jQuery(function(){
 			}
 		},
 
-
 		'slideOverFromRight' : {
 
 			'start': function( target ){
@@ -161,6 +160,69 @@ jQuery(function(){
 						autoAlpha:0
 					});
 */
+				});
+			}
+		},
+
+		'pushOverFromRight' : {
+
+			'start': function( target ){
+
+				//if there aren't any overlays
+				if ( 1 > jQuery('#soulbuttons-backdrop').size() ) {
+
+					//append the overlay to the body
+					jQuery('body').append('<div id="soulbuttons-backdrop"></div>');
+
+					//set overlay CSS
+					TweenMax.set('#soulbuttons-backdrop',{
+						position:'fixed',
+						top:0,
+						left:0,
+						right:0,
+						bottom:0,
+						zIndex:99,
+						backgroundColor:'rgba(0,0,0,0.5)',
+						autoAlpha:0
+					});
+
+				}
+
+				jQuery('body').append(jQuery(target));
+				jQuery('body').append(jQuery('.oncanvas'));
+
+				// set target CSS
+				TweenMax.set(target,{
+					position:'fixed',
+					top:0,
+					left:'100%',
+					zIndex:100,
+					width:'50%'
+				});
+			},
+
+			//on click
+			'click' : function( target, trigger ){
+
+				var soulbuttonstl = new TimelineMax();
+
+				//fade the target and overlay in
+				soulbuttonstl
+				.to('#soulbuttons-backdrop',window.tweenspeed,{
+					autoAlpha:1
+				})
+				.to(window.elementsToShift,window.tweenspeed,{
+					x:'-50%'
+				},'0')
+				.to(target,window.tweenspeed,{
+					left:'auto',
+					right:0
+				},'0');
+
+				//make clicks on the overlay close everything
+				jQuery('#soulbuttons-backdrop').click(function(){
+					soulbuttonstl.reverse();
+
 				});
 			}
 		}
