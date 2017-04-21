@@ -251,6 +251,7 @@ class SoulButtons {
 			'border-width'    => false,
 			'width'           => false,
 			'target'          => false,
+			'target-open'     => false,
 			'target-effect'   => 'slideOverFromRight',
 			'scrollto'        => false,
 			'scrollto-speed'	=> 0.5,
@@ -331,6 +332,7 @@ class SoulButtons {
 		if ( $atts['target'] ) {
 			$arguments['data-target'] = $atts['target'];
 			$arguments['data-effect'] = $atts['target-effect'];
+			$arguments['data-open']   = $atts['target-open'];
 		}
 		$arguments['id']    = isset( $atts['id'] ) ? $atts['id'] : false;
 		foreach ( $arguments as $key => $value ) {

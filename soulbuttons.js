@@ -232,6 +232,9 @@ jQuery(function(){
 		var target = jQuery(this).data('target');
 		var effect = jQuery(this).data('effect');
 		SoulButtonTargetEffects[effect].start( target );
+		if ( jQuery(this).data('open') ) {
+			SoulButtonTargetEffects[effect].click( target, this );
+		}
 		jQuery(this).click(function(){
 			var target = jQuery(this).data('target');
 			var effect = jQuery(this).data('effect');
