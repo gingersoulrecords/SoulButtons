@@ -18,31 +18,20 @@ jQuery(function($){
 });
 // preventDefault for hash links
 jQuery(function($){
-	jQuery('.soulbuttons').each(function(){
+	jQuery('.soulbuttons.soulbuttons-prevent-default').each(function(){
 		jQuery(this).click(function(e){
-			var el = jQuery(this);
-			if ( true !== /^#/.test( el.attr( 'href' ) ) ) {
-				return true;
-			}
-			if ( 0 === jQuery( el.attr( 'href' ) ).size() ){
-				return true;
-			}
 			e.preventDefault();
-			if ( el.hasClass('soulbuttons-scrollto') ) {
-				TweenMax.to( window, el.data('scrollto-speed'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
-			} else {
-				TweenMax.to( window, 0, { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
-			}
 		});
 	});
 });
 // initalize scrollTo
-// jQuery(function($){
-// 	jQuery('.soulbuttons.soulbuttons-scrollto').click(function(e){
-// 		var el = jQuery(this);
-// 		TweenMax.to( window, el.data('scrollto-speed'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
-// 	})
-// });
+jQuery(function($){
+	jQuery('.soulbuttons.soulbuttons-scrollto').click(function(e){
+		e.preventDefault();
+		var el = jQuery(this);
+		TweenMax.to( window, el.data('scrollto-speed'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
+	})
+});
 
 // initalize target effects for buttons
 jQuery(function(){
