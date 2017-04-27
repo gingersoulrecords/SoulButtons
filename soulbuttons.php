@@ -256,6 +256,7 @@ class SoulButtons {
 			'scrollto'        => false,
 			'scrollto-speed'	=> 0.5,
 			'scrollto-offset' => 0,
+			'prevent-default' => false,
 		);
 		$atts = wp_parse_args( $atts, $defaults );
 		if ( isset( $atts['link'] ) ) {
@@ -304,6 +305,9 @@ class SoulButtons {
 		}
 		if ( $atts['align'] ) {
 			$class['align'] = "soulbuttons-align-{$atts['align']}";
+		}
+		if ( $atts['prevent-default'] ) {
+			$class['prevent-default'] = "soulbuttons-prevent-default";
 		}
 		if ( in_array( $atts['scrollto'], array( false, 'false', '0', '' ), true ) ) {
 			$atts['scrollto'] = false;

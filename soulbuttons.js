@@ -16,19 +16,19 @@ jQuery(function($){
     window[tracker_var]( 'send', 'event', 'button', button );
 	});
 });
-
+// preventDefault for hash links
+jQuery(function($){
+	jQuery('.soulbuttons.soulbuttons-prevent-default').each(function(){
+		jQuery(this).click(function(e){
+			e.preventDefault();
+		});
+	});
+});
 // initalize scrollTo
 jQuery(function($){
 	jQuery('.soulbuttons.soulbuttons-scrollto').click(function(e){
-		var el = jQuery(this);
-		console.log( el.attr( 'href' ) );
-		if ( true !== /^#/.test( el.attr( 'href' ) ) ) {
-			return true;
-		}
-		if ( 0 === jQuery( el.attr( 'href' ) ).size() ){
-			return true;
-		}
 		e.preventDefault();
+		var el = jQuery(this);
 		TweenMax.to( window, el.data('scrollto-speed'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
 	})
 });
