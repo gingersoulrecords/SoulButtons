@@ -225,14 +225,14 @@ class SoulButtons {
           'items' => array(
 						array(
 							'type'		=> 'textbox',
-							'name'		=> 'target',
+							'name'		=> 'offcanvas-target',
 							'label'		=> __( 'Off-canvas Target', 'soulbuttons' ),
 							'tooltip'	=> __( 'i.e. #main-content', 'soulbuttons' ),
 						),
 						array(
 							'type'		=> 'listbox',
-							'name'		=> 'target-effect',
-							'label'		=> __( 'Target Effect', 'soulbuttons' ),
+							'name'		=> 'offcanvas-effect',
+							'label'		=> __( 'Off-canvas Effect', 'soulbuttons' ),
 							'values'	=> array(
 								array(
 									'text'  => __( 'Fade-in from center', 'soulbuttons' ),
@@ -247,6 +247,12 @@ class SoulButtons {
 									'value' => 'pushOverFromRight',
 								),
 							),
+						),
+						array(
+							'type'		=> 'checkbox',
+							'name'		=> 'offcanvas-open',
+							'label'		=> __( 'Start Open', 'soulbuttons' ),
+							'tooltip'	=> __( 'Should the off-canvas effect start in open state?', 'soulbuttons' ),
 						),
 						array(
 							'type'	=> 'checkbox',
@@ -298,29 +304,29 @@ class SoulButtons {
 	 */
 	public static function shortcode( $atts = array(), $content = '' ) {
 		$defaults = array(
-			'type'            => 'a', // TO DO: could also be 'button', 'span'.
-			'href'            => '#',
-			'style'           => 'solid',
-			'class'           => false,
-			'css'             => '',
-			'color'           => self::$options['color'],
-			'text'            => self::$options['color2'],
-			'border'          => self::$options['color'],
-			'track'           => self::$options['track'],
-			'icon'            => false,
-			'icon-position'   => 'before',
-			'hover'           => false,
-			'align'           => false,
-			'padding'         => false,
-			'border-width'    => false,
-			'width'           => false,
-			'target'          => false,
-			'target-open'     => false,
-			'target-effect'   => 'slideOverFromRight',
-			'scrollto'        => false,
-			'scrollto-speed'	=> 0.5,
-			'scrollto-offset' => 0,
-			'prevent-default' => false,
+			'type'            	=> 'a', // TO DO: could also be 'button', 'span'.
+			'href'            	=> '#',
+			'style'           	=> 'solid',
+			'class'           	=> false,
+			'css'             	=> '',
+			'color'           	=> self::$options['color'],
+			'text'            	=> self::$options['color2'],
+			'border'          	=> self::$options['color'],
+			'track'           	=> self::$options['track'],
+			'icon'            	=> false,
+			'icon-position'   	=> 'before',
+			'hover'           	=> false,
+			'align'           	=> false,
+			'padding'         	=> false,
+			'border-width'    	=> false,
+			'width'           	=> false,
+			'offcanvas-target'	=> false,
+			'offcanvas-open'  	=> false,
+			'offcanvas-effect'	=> 'slideOverFromRight',
+			'scrollto'        	=> false,
+			'scrollto-speed'		=> 0.5,
+			'scrollto-offset' 	=> 0,
+			'prevent-default' 	=> false,
 		);
 		$atts = wp_parse_args( $atts, $defaults );
 		if ( isset( $atts['link'] ) ) {
