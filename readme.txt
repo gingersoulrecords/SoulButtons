@@ -4,7 +4,7 @@ Donate link: http://gingersoulrecords.com/
 Tags: button, call to action, button shortcode, shortcode
 Requires at least: 4.6
 Tested up to: 4.7
-Stable tag: 0.1.5
+Stable tag: 0.1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,8 +63,10 @@ Here is the list of available attributes:
 * `scrollto` - adds a visual "Scroll To" effect for anchor links (true/false).
 * `scrollto-speed` - set scrollto effect speed (default 0.5).
 * `scrollto-offset` - add a vertical offset for scrollto effect (default 0).
-* `target` - define an element (via CSS selector) to take out of DOM and animate as off-canvas item.
-* `target-effect` - define which effect should be used the off-canvas target. Available effect include `fadeInFromCenter`, `slideOverFromRight` (default), `pushOverFromRight`
+* `offcanvas-target` - define an element (via CSS selector) to take out of DOM and animate as off-canvas item.
+* `offcanvas-effect` - define which effect should be used the off-canvas target. Available effect include `fadeInFromCenter`, `slideOverFromRight` (default), `pushOverFromRight`
+* `offcanvas-open` - determine if offcanvas element should initially be in open or closed state (default - false).
+* `prevent-default` - allows to disable default action of the link (i.e. appending hash values to url) (default -false).
 
 == Screenshots ==
 
@@ -73,6 +75,14 @@ Here is the list of available attributes:
 3. Settings page
 
 == Changelog ==
+
+= 0.1.6 =
+* add `prevent-default` attribute (#27);
+* add `offcanvas-open` attribute (#29) to allow initializing off-canvas element in open state;
+* rename `target`/`target-effect` attributes to `offcanvas-target`/`offcanvas-effect` (#31);
+* fix `css` attribute values not being applied correctly (#32);
+* restructe the shortcode generation modal, separating options into Content and Behaviour tabs (#34);
+* resizing Dashicons to 80% by default;  
 
 = 0.1.5 =
 * moved screenshots to assets
