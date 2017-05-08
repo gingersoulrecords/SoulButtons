@@ -308,7 +308,7 @@ class SoulButtons {
 			'href'            	=> '#',
 			'style'           	=> 'solid',
 			'class'           	=> false,
-			'css'             	=> '',
+			'css'             	=> false,
 			'color'           	=> self::$options['color'],
 			'text'            	=> self::$options['color2'],
 			'border'          	=> self::$options['color'],
@@ -363,6 +363,9 @@ class SoulButtons {
 		}
 		if ( false !== $atts['width'] ) {
 			$style .= "min-width:{$atts['width']};";
+		}
+		if ( false !== $atts['css'] ) {
+			$style .= $atts['css'];
 		}
 		$class = "soulbuttons soulbuttons-{$atts['style']}" . ( $atts['class'] ? ( ' ' . $atts['class'] ) : '' ) ;
 		$class = explode( ' ', $class );
