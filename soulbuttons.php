@@ -137,77 +137,141 @@ class SoulButtons {
 		wp_register_script( 'soulbuttons-admin', plugins_url( 'soulbuttons-admin.js', __FILE__ ), array( 'jquery' ) );
 		$data = array(
 			'icon' => plugins_url( 'soulbuttons-button.png', __FILE__ ),
+			'editor' => array(
+        array(
+          'type'  => 'form',
+          'title' => __( 'Content', 'soulbuttons' ),
+          'items' => array(
+						array(
+							'type'	=> 'textbox',
+							'name'	=> 'link',
+							'value'	=> '#',
+							'label'	=> __( 'Link', 'soulbuttons' ),
+						),
+						array(
+							'type'	=> 'textbox',
+							'name'	=> 'content',
+							'value'	=> '',
+							'label'	=> __( 'Text', 'soulbuttons' ),
+						),
+						array(
+							'type'	=> 'listbox',
+							'name'	=> 'style',
+							'label'	=> __( 'Style', 'soulbuttons' ),
+							'values'	=> array(
+								array(
+									'text'  => __( 'Solid (default)', 'soulbuttons' ),
+									'value' => '',
+								),
+								array(
+									'text'  => __( 'Border', 'soulbuttons' ),
+									'value' => 'border',
+								),
+								array(
+									'text'  => __( 'Rounded Corners', 'soulbuttons' ),
+									'value' => 'rounded',
+								),
+								array(
+									'text'  => __( 'Transparent', 'soulbuttons' ),
+									'value' => 'transparent',
+								),
+							),
+						),
+						array(
+							'type'	=> 'listbox',
+							'name'	=> 'align',
+							'label'	=> __( 'Text Alignment', 'soulbuttons' ),
+							'values'	=> array(
+								array(
+									'text'  => __( 'Center (default)', 'soulbuttons' ),
+									'value' => '',
+								),
+								array(
+									'text'  => __( 'Left', 'soulbuttons' ),
+									'value' => 'left',
+								),
+								array(
+									'text'  => __( 'Right', 'soulbuttons' ),
+									'value' => 'right',
+								),
+							),
+						),
+						array(
+							'type'		=> 'textbox',
+							'name'		=> 'icon',
+							'label'		=> __( 'Icon', 'soulbuttons' ),
+							'tooltip'	=> __( 'i.e. "fa-shopping-cart" or "dashicons-arrow-left"', 'soulbuttons' ),
+						),
+						array(
+							'type'	=> 'listbox',
+							'name'	=> 'icon-position',
+							'label'	=> __( 'Icon Position', 'soulbuttons' ),
+							'values'	=> array(
+								array(
+									'text'  => __( 'Before text (default)', 'soulbuttons' ),
+									'value' => '',
+								),
+								array(
+									'text'  => __( 'After text', 'soulbuttons' ),
+									'value' => 'after',
+								),
+							),
+						),
+					),
+        ),
+				array(
+          'type'  => 'form',
+          'title' => __( 'Behaviour', 'soulbuttons' ),
+          'items' => array(
+						array(
+							'type'		=> 'textbox',
+							'name'		=> 'target',
+							'label'		=> __( 'Off-canvas Target', 'soulbuttons' ),
+							'tooltip'	=> __( 'i.e. #main-content', 'soulbuttons' ),
+						),
+						array(
+							'type'		=> 'listbox',
+							'name'		=> 'target-effect',
+							'label'		=> __( 'Target Effect', 'soulbuttons' ),
+							'values'	=> array(
+								array(
+									'text'  => __( 'Fade-in from center', 'soulbuttons' ),
+									'value' => 'fadeInFromCenter',
+								),
+								array(
+									'text'  => __( 'Slide-over from right', 'soulbuttons' ),
+									'value' => 'slideOverFromRight',
+								),
+								array(
+									'text'  => __( 'Push-over from right', 'soulbuttons' ),
+									'value' => 'pushOverFromRight',
+								),
+							),
+						),
+						array(
+							'type'	=> 'checkbox',
+							'name'	=> 'scrollto',
+							'label'	=> __( 'Scroll To', 'soulbuttons' ),
+						),
+						array(
+							'type'		=> 'textbox',
+							'name'		=> 'scrollto-speed',
+							'label'		=> __( 'Scroll To Speed', 'soulbuttons' ),
+						),
+						array(
+							'type'		=> 'textbox',
+							'name'		=> 'scrollto-offset',
+							'label'		=> __( 'Scroll To Offset', 'soulbuttons' ),
+						),
+						array(
+							'type'	=> 'checkbox',
+							'name'	=> 'prevent-default',
+							'label'	=> __( 'Prevent Default ', 'soulbuttons' ),
+						),
+					),
+        ),
+      ),
 			'texts' => array(
-				'main_label' 			=> __( 'Main', 'soulbuttons' ),
-				'advanced_label'	=> __( 'Advanced', 'soulbuttons' ),
-				'link_label' 		  => __( 'Link', 'soulbuttons' ),
-				'style_label' 		=> __( 'Style', 'soulbuttons' ),
-				'text_label' 		  => __( 'Text', 'soulbuttons' ),
-				'align_label' 		=> __( 'Text Alignment', 'soulbuttons' ),
-				'icon_label'      => __( 'Icon', 'soulbuttons' ),
-				'icon_tooltip'    => __( 'i.e. "fa-shopping-cart" or "dashicons-arrow-left"', 'soulbuttons' ),
-				'iconpos_label'   => __( 'Icon Position', 'soulbuttons' ),
-				'target_label'		=> __( 'Target', 'soulbuttons' ),
-				'target_tooltip'	=> __( 'i.e. #main-content', 'soulbuttons' ),
-				'targeteffect_label'		=> __( 'Target Effect', 'soulbuttons' ),
-				'style_options'   => array(
-					array(
-						'text'  => __( 'Solid (default)', 'soulbuttons' ),
-						'value' => '',
-					),
-					array(
-						'text'  => __( 'Border', 'soulbuttons' ),
-						'value' => 'border',
-					),
-					array(
-						'text'  => __( 'Rounded Corners', 'soulbuttons' ),
-						'value' => 'rounded',
-					),
-					array(
-						'text'  => __( 'Transparent', 'soulbuttons' ),
-						'value' => 'transparent',
-					),
-				),
-				'align_options'   => array(
-					array(
-						'text'  => __( 'Center (default)', 'soulbuttons' ),
-						'value' => '',
-					),
-					array(
-						'text'  => __( 'Left', 'soulbuttons' ),
-						'value' => 'left',
-					),
-					array(
-						'text'  => __( 'Right', 'soulbuttons' ),
-						'value' => 'right',
-					),
-				),
-				'iconpos_options'   => array(
-					array(
-						'text'  => __( 'Before text (default)', 'soulbuttons' ),
-						'value' => '',
-					),
-					array(
-						'text'  => __( 'After text', 'soulbuttons' ),
-						'value' => 'after',
-					),
-				),
-				'targeteffect_options'   => array(
-					array(
-						'text'  => __( 'Fade-in from center', 'soulbuttons' ),
-						'value' => 'fadeInFromCenter',
-					),
-					array(
-						'text'  => __( 'Slide-over from right', 'soulbuttons' ),
-						'value' => 'slideOverFromRight',
-					),
-					array(
-						'text'  => __( 'Push-over from right', 'soulbuttons' ),
-						'value' => 'pushOverFromRight',
-					),
-				),
-				'class_label' 					=> __( 'CSS classes', 'soulbuttons' ),
-				'wordlimit_label'				=> __( 'Word Limit', 'soulbuttons' ),
 				'add_dialog_title'  		=> __( 'Add SoulButton', 'soulbuttons' ),
 			),
 		);
