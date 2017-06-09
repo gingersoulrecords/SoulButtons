@@ -5,8 +5,9 @@
     text-decoration: none;
     opacity: 0.9;
     transition: all 0.3s;
-    font-weight: 600;
+/*     font-weight: 600; */
     text-align: center;
+    line-height: 1;
 }
 
 /* EDD 'Add to Cart' Text Styling */
