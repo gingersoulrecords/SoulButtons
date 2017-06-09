@@ -406,10 +406,10 @@ class SoulButtons {
 		$arguments['style'] = $style;
 		$arguments['class'] = $class;
 		$arguments['href']  = $atts['href'];
-		if ( $atts['target'] ) {
-			$arguments['data-target'] = $atts['target'];
-			$arguments['data-effect'] = $atts['target-effect'];
-			$arguments['data-open']   = $atts['target-open'];
+		if ( $atts['offcanvas-target'] ) {
+			$arguments['data-target'] = $atts['offcanvas-target'];
+			$arguments['data-effect'] = $atts['offcanvas-effect'];
+			$arguments['data-open']   = $atts['offcanvas-open'];
 		}
 		$arguments['id']    = isset( $atts['id'] ) ? $atts['id'] : false;
 		foreach ( $arguments as $key => $value ) {
