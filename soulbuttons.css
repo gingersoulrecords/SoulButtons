@@ -56,20 +56,25 @@
 }
 
 /* icon styles */
+/*
 .soulbuttons-icon-before {
   margin-right: 1em;
 }
+*/
 /*
 .soulbuttons-icon-after {
   margin-left: 1em;
 }
 */
 
+
 /* hover animations */
 
 .soulbuttons .soulbuttons-icon {
   position:relative;
   transition: all 0.3s;
+      margin: 0 .25rem;
+
 }
 
 .soulbuttons-hover-icon-left .soulbuttons-icon {
