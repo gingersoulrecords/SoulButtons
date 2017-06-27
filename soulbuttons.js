@@ -23,13 +23,18 @@ jQuery(function($){
 			e.preventDefault();
 		});
 	});
+	
+	jQuery('.soulbuttons.soulbuttons-unwrap').each(function(){
+		jQuery(this).unwrap('p');
+	});
+	
 });
 // initalize scrollTo
 jQuery(function($){
 	jQuery('.soulbuttons.soulbuttons-scrollto').click(function(e){
 		e.preventDefault();
 		var el = jQuery(this);
-		TweenMax.to( window, el.data('scrollto-speed'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset') } } );
+		TweenMax.to( window, el.data('scrollto-speed'), { scrollTo: { y: el.attr( 'href' ), offsetY: el.data('scrollto-offset'), autoKill:false }, ease:Power4.easeOut } );
 	})
 });
 

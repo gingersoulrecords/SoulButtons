@@ -274,6 +274,11 @@ class SoulButtons {
 							'name'	=> 'prevent-default',
 							'label'	=> __( 'Prevent Default ', 'soulbuttons' ),
 						),
+						array(
+							'type'	=> 'checkbox',
+							'name'	=> 'unwrap',
+							'label'	=> __( 'Unwrap ', 'soulbuttons' ),
+						),
 					),
         ),
       ),
@@ -327,6 +332,7 @@ class SoulButtons {
 			'scrollto-speed'		=> 0.5,
 			'scrollto-offset' 	=> 0,
 			'prevent-default' 	=> false,
+			'unwrap' 			=> false,
 		);
 		$atts = wp_parse_args( $atts, $defaults );
 		if ( isset( $atts['link'] ) ) {
@@ -381,6 +387,9 @@ class SoulButtons {
 		}
 		if ( $atts['prevent-default'] ) {
 			$class['prevent-default'] = "soulbuttons-prevent-default";
+		}
+		if ( $atts['unwrap'] ) {
+			$class['unwrap'] = "soulbuttons-unwrap";
 		}
 		if ( in_array( $atts['scrollto'], array( false, 'false', '0', '' ), true ) ) {
 			$atts['scrollto'] = false;
