@@ -77,32 +77,32 @@
 
 }
 
-.soulbuttons-hover-icon-left .soulbuttons-icon {
+.soulbuttons-hover-icon-right .soulbuttons-icon {
   left:0;
 }
-.soulbuttons-hover-icon-left:hover .soulbuttons-icon {
-  left:0.5em;
+.soulbuttons-hover-icon-right:hover .soulbuttons-icon {
+  left:0.25rem;
 }
 
-.soulbuttons-hover-icon-right .soulbuttons-icon {
+.soulbuttons-hover-icon-left .soulbuttons-icon {
   right:0;
 }
-.soulbuttons-hover-icon-right:hover .soulbuttons-icon {
-  right:0.5em;
+.soulbuttons-hover-icon-left:hover .soulbuttons-icon {
+  right:0.25rem;
 }
 
-.soulbuttons-hover-icon-top .soulbuttons-icon {
+.soulbuttons-hover-icon-down .soulbuttons-icon {
   top:0;
 }
-.soulbuttons-hover-icon-top:hover .soulbuttons-icon {
-  top:0.5em;
+.soulbuttons-hover-icon-down:hover .soulbuttons-icon {
+  top:0.25rem;
 }
 
-.soulbuttons-hover-icon-bottom .soulbuttons-icon {
+.soulbuttons-hover-icon-up .soulbuttons-icon {
   bottom:0;
 }
-.soulbuttons-hover-icon-bottom:hover .soulbuttons-icon {
-  bottom:0.5em;
+.soulbuttons-hover-icon-up:hover .soulbuttons-icon {
+  bottom:0.25rem;
 }
 
 .soulbuttons-hover-underline:hover {
