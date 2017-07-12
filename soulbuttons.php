@@ -235,15 +235,15 @@ class SoulButtons {
 							'label'		=> __( 'Off-canvas Effect', 'soulbuttons' ),
 							'values'	=> array(
 								array(
-									'text'  => __( 'Fade-in from center', 'soulbuttons' ),
+									'text'  => __( 'Fade-in from Center', 'soulbuttons' ),
 									'value' => 'fadeInFromCenter',
 								),
 								array(
-									'text'  => __( 'Slide-over from right', 'soulbuttons' ),
+									'text'  => __( 'Slide-over from Right', 'soulbuttons' ),
 									'value' => 'slideOverFromRight',
 								),
 								array(
-									'text'  => __( 'Push-over from right', 'soulbuttons' ),
+									'text'  => __( 'Push-over from Right', 'soulbuttons' ),
 									'value' => 'pushOverFromRight',
 								),
 							),

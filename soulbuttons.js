@@ -40,9 +40,31 @@ jQuery(function($){
 
 // initalize target effects for buttons
 jQuery(function(){
+	
+	function getUrlVars()
+	{
+	    var vars = [], hash;
+	    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	    for(var i = 0; i < hashes.length; i++)
+	    {
+	        hash = hashes[i].split('=');
+	        vars.push(hash[0]);
+	        vars[hash[0]] = hash[1];
+	    }
+	    return vars;
+	}
+	
+	if( getUrlVars() == 'fl_builder'){
+		return false;
+	}
+	
 	if( jQuery('html').hasClass( 'fl-builder-edit' ) ) {
 		return false;
 	}
+	
+	
+	
+	
 	if( 'undefined' === typeof( TweenMax ) ) {
 		return false;
 	}
@@ -57,6 +79,8 @@ jQuery(function(){
 				if ( 1 > jQuery('#soulbuttons-backdrop').size() ) {
 
 					//append the overlay to the body
+					//alert(jQuery('html').attr('class'));
+					
 					jQuery('body').append('<div id="soulbuttons-backdrop"></div>');
 
 					//set overlay CSS
@@ -67,13 +91,16 @@ jQuery(function(){
 						right:0,
 						bottom:0,
 						zIndex:99,
-						backgroundColor:'rgba(0,0,0,0.5)',
+						backgroundColor:'rgba(0,0,0,0.75)',
 						autoAlpha:0
 					});
 
 				}
 
 				jQuery('body').append(jQuery(target));
+				jQuery('<div class="closebutton">×</div>').prependTo(jQuery(target).find('.ss-container')).click(function(){
+					jQuery('#soulbuttons-backdrop').click();
+				});
 				// set target CSS
 				TweenMax.set(target,{
 					position:'fixed',
@@ -82,7 +109,8 @@ jQuery(function(){
 					x:'-50%',
 					y:'-50%',
 					zIndex:100,
-					autoAlpha:0
+					autoAlpha:0, 
+					scale:.7
 				});
 			},
 
@@ -90,14 +118,25 @@ jQuery(function(){
 			'click' : function( target, trigger ){
 
 				//fade the target and overlay in
-				TweenMax.allTo(['#soulbuttons-backdrop',target],window.tweenspeed,{
-					autoAlpha:1
+				TweenMax.to('#soulbuttons-backdrop',.25,{
+					autoAlpha:1, 
 				});
+				TweenMax.to(target,window.tweenspeed,{
+					autoAlpha:1, 
+					scale:1
+				});
+				
+				
+				
 
 				//make clicks on the overlay close everything
 				jQuery('#soulbuttons-backdrop').click(function(){
-					TweenMax.allTo([jQuery(this),target],window.tweenspeed,{
+					TweenMax.to(jQuery(this),.25,{
 						autoAlpha:0
+					});
+					TweenMax.to(target,window.tweenspeed,{
+						autoAlpha:0, 
+						scale:.7
 					});
 				});
 			}
@@ -130,8 +169,10 @@ jQuery(function(){
 
 
 				jQuery('body').append(jQuery(target));
-
-				// set target CSS
+				jQuery('<div class="closebutton">×</div>').prependTo(jQuery(target).find('.ss-container')).click(function(){
+					jQuery('#soulbuttons-backdrop').click();
+				});
+								// set target CSS
 				TweenMax.set(target,{
 					position:'fixed',
 					top:0,
@@ -149,7 +190,7 @@ jQuery(function(){
 				var soulbuttonstl = new TimelineMax();
 				//fade the target and overlay in
 				soulbuttonstl
-				.to('#soulbuttons-backdrop',window.tweenspeed,{
+				.to('#soulbuttons-backdrop',.25,{
 					autoAlpha:1
 				})
 				.to(target,window.tweenspeed,{
@@ -233,17 +274,29 @@ jQuery(function(){
 		}
 	};
 
-	jQuery('.soulbuttons[data-target]').each(function(){
-		var target = jQuery(this).data('target');
-		var effect = jQuery(this).data('effect');
-		SoulButtonTargetEffects[effect].start( target );
-		if ( jQuery(this).data('open') ) {
-			SoulButtonTargetEffects[effect].click( target, this );
-		}
-		jQuery(this).click(function(){
+	//if(jQuery('.fl-builder-edit').length === 0){
+		
+		jQuery('.soulbuttons[data-target]').each(function(){
 			var target = jQuery(this).data('target');
 			var effect = jQuery(this).data('effect');
-			SoulButtonTargetEffects[effect].click( target, this );
+			
+			
+			SoulButtonTargetEffects[effect].start( target );
+			
+			
+			if ( jQuery(this).data('open') ) {
+				SoulButtonTargetEffects[effect].click( target, this );
+			}
+			jQuery(this).click(function(){
+				var target = jQuery(this).data('target');
+				var effect = jQuery(this).data('effect');
+				SoulButtonTargetEffects[effect].click( target, this );
+			});
 		});
-	});
+	
+	//}
+	
+	
+	
+	
 });
