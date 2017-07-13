@@ -69,7 +69,7 @@ jQuery(function(){
 		return false;
 	}
 
-	window.tweenspeed = .4;
+	window.tweenspeed = .5;
 	var SoulButtonTargetEffects = {
 		'fadeInFromCenter' : {
 
@@ -110,20 +110,21 @@ jQuery(function(){
 					y:'-50%',
 					zIndex:100,
 					autoAlpha:0, 
-					scale:.7
+					//scale:.7
 				});
 			},
 
 			//on click
 			'click' : function( target, trigger ){
-
+				jQuery(target).addClass('soulbuttons-open');
+				jQuery('body').addClass('soulbuttons-modal-open');
 				//fade the target and overlay in
 				TweenMax.to('#soulbuttons-backdrop',.25,{
 					autoAlpha:1, 
 				});
 				TweenMax.to(target,window.tweenspeed,{
 					autoAlpha:1, 
-					scale:1
+					//scale:1
 				});
 				
 				
@@ -131,12 +132,14 @@ jQuery(function(){
 
 				//make clicks on the overlay close everything
 				jQuery('#soulbuttons-backdrop').click(function(){
+				jQuery(target).removeClass('soulbuttons-open');
+				jQuery('body').removeClass('soulbuttons-modal-open');
 					TweenMax.to(jQuery(this),.25,{
 						autoAlpha:0
 					});
 					TweenMax.to(target,window.tweenspeed,{
 						autoAlpha:0, 
-						scale:.7
+						//scale:.7
 					});
 				});
 			}
@@ -186,7 +189,8 @@ jQuery(function(){
 
 			//on click
 			'click' : function( target, trigger ){
-
+				jQuery(target).addClass('soulbuttons-open');
+				jQuery('body').addClass('soulbuttons-modal-open');
 				var soulbuttonstl = new TimelineMax();
 				//fade the target and overlay in
 				soulbuttonstl
@@ -201,15 +205,14 @@ jQuery(function(){
 				//make clicks on the overlay close everything
 				jQuery('#soulbuttons-backdrop').click(function(){
 					soulbuttonstl.reverse();
-/*
-					TweenMax.allTo([jQuery(this),target],1,{
-						autoAlpha:0
-					});
-*/
+					jQuery(target).removeClass('soulbuttons-open');
+					jQuery('body').removeClass('soulbuttons-modal-open');
+
 				});
 			}
 		},
 
+/*
 		'pushOverFromRight' : {
 
 			'start': function( target ){
@@ -272,6 +275,7 @@ jQuery(function(){
 				});
 			}
 		}
+*/
 	};
 
 	//if(jQuery('.fl-builder-edit').length === 0){
