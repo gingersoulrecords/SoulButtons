@@ -1,10 +1,10 @@
 === SoulButtons ===
 Contributors: gingersoulrecords,ideag
-Donate link: http://gingersoulrecords.com/
+Donate link: https://gingersoulrecords.com/
 Tags: button, call to action, button shortcode, shortcode
 Requires at least: 4.6
-Tested up to: 4.7
-Stable tag: 0.1.6
+Tested up to: 4.8
+Stable tag: 0.1.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
