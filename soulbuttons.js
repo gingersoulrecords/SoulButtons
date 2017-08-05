@@ -92,7 +92,7 @@ jQuery(function(){
 						left:0,
 						right:0,
 						bottom:0,
-						zIndex:99,
+						zIndex:992,
 						backgroundColor:'rgba(0,0,0,0.75)',
 						autoAlpha:0
 					});
@@ -110,7 +110,7 @@ jQuery(function(){
 					left: '50%',
 					x:'-50%',
 					y:'-50%',
-					zIndex:100,
+					zIndex:992,
 					autoAlpha:0, 
 					//scale:.7
 				});
@@ -164,7 +164,7 @@ jQuery(function(){
 						left:0,
 						right:0,
 						bottom:0,
-						zIndex:99,
+						zIndex:992,
 						backgroundColor:'rgba(0,0,0,0.5)',
 						autoAlpha:0
 					});
@@ -184,7 +184,7 @@ jQuery(function(){
 					top:0,
 					right:0,
 					x:'100vw',
-					zIndex:100,
+					zIndex:992,
 					autoAlpha:0,
 					width:'50%'
 				});
