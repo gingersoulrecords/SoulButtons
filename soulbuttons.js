@@ -25,7 +25,9 @@ jQuery(function($){
 	});
 	
 	jQuery('.soulbuttons.soulbuttons-unwrap').each(function(){
-		jQuery(this).unwrap('p');
+		if(jQuery(this).parent().is('p')){
+			jQuery(this).unwrap();
+		}
 	});
 	
 });
@@ -69,7 +71,7 @@ jQuery(function(){
 		return false;
 	}
 
-	window.tweenspeed = .5;
+	window.tweenspeed = .25;
 	var SoulButtonTargetEffects = {
 		'fadeInFromCenter' : {
 
@@ -172,6 +174,7 @@ jQuery(function(){
 
 
 				jQuery('body').append(jQuery(target));
+				
 				jQuery('<div class="closebutton">×</div>').prependTo(jQuery(target).find('.ss-container')).click(function(){
 					jQuery('#soulbuttons-backdrop').click();
 				});
@@ -200,7 +203,8 @@ jQuery(function(){
 				.to(target,window.tweenspeed,{
 					autoAlpha:1,
 					x:'0vw'
-				},'0');
+				},'0')
+				;
 
 				//make clicks on the overlay close everything
 				jQuery('#soulbuttons-backdrop').click(function(){
